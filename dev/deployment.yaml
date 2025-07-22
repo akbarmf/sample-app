@@ -17,3 +17,16 @@ spec:
         image: us-east4-docker.pkg.dev/qwiklabs-gcp-00-62f056938153/my-repository/hello-cloudbuild-dev:v1.0
         ports:
         - containerPort: 8080
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: dev-deployment-service
+spec:
+  selector:
+    app: dev-app
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
+  type: LoadBalancer
